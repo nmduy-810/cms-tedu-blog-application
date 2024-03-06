@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TeduBlog.Api;
 using TeduBlog.Core.Domains.Identity;
 using TeduBlog.Data;
 
@@ -55,6 +56,9 @@ try
     app.UseAuthorization();
 
     app.MapControllers();
+    
+    // Seeding data
+    app.MigrationDatabase();
 
     app.Run();
 }
