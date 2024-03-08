@@ -1,9 +1,10 @@
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TeduBlog.Api;
 using TeduBlog.Core.Domains.Identity;
+using TeduBlog.Core.SeedWorks;
 using TeduBlog.Data;
+using TeduBlog.Data.SeedWorks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,10 @@ try
         options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
         options.User.RequireUniqueEmail = false;
     });
+    
+    // Add Repository and UOF
+    builder.Services.AddScoped(typeof(IRepositoryBase<,>), typeof(RepositoryBase<,>));
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
     
     //Default config for ASP.NET Core
     builder.Services.AddControllers();
