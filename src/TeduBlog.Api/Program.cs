@@ -86,6 +86,7 @@ try
             Title = "API for Administrators",
             Description = "API for CMS core domain. This domain keeps track of campaigns, campaign rules, and campaign execution."
         });
+        c.ParameterFilter<SwaggerNullableParameterFilter>();
     });
 
     var app = builder.Build();
@@ -96,7 +97,7 @@ try
         app.UseSwaggerUI(c =>
         {
             c.SwaggerEndpoint("AdminAPI/swagger.json", "Admin API");
-            c.DisplayOperationId();
+            c.DisplayOperationId(); // Show function name in swagger
             c.DisplayRequestDuration();
         });
     }
