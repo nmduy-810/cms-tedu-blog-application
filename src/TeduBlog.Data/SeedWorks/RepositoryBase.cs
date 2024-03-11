@@ -4,10 +4,11 @@ using TeduBlog.Core.SeedWorks;
 
 namespace TeduBlog.Data.SeedWorks;
 
-public class RepositoryBase<T, TK>(DbContext context) : IRepositoryBase<T, TK>
+public class RepositoryBase<T, TK>(TeduBlogDbContext context) : IRepositoryBase<T, TK>
     where T : class
 {
     private readonly DbSet<T> _dbSet = context.Set<T>();
+    protected readonly TeduBlogDbContext Context = context;
 
     public async Task<T?> GetByIdAsync(TK id)
     {
